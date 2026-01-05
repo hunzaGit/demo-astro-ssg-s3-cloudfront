@@ -1,0 +1,51 @@
+name: Deploy Astro SSG to S3 + CloudFront
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch: # Esto habilita el botón "Run workflow"
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build Astro site
+              run: npm run build
+
+            # 👇 SOLO se ejecuta si build ha ido bien
+            - name: Configure AWS credentials via OIDC
+              uses: aws-actions/configure-aws-credentials@v5.1.1
+              with:
+                  role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+                  aws-region: ${{ vars.AWS_REGION }}
+
+            - name: Deploy to S3
+              run: |
+                  aws s3 sync dist/ s3://${{ vars.PORTFOLIO_BUCKET_S3 }} \
+                   --delete \
+                   --region ${{ vars.AWS_REGION }} \
+                   --cache-control max-age=31536000
+
+            - name: Invalidate CloudFront cache
+              run: |
+                  aws cloudfront create-invalidation \
+                  --distribution-id ${{ secrets.PORTFOLIO_DISTRIBUTION_ID }} \
+                  --paths '/*'
