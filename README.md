@@ -105,11 +105,11 @@ Updated website
 
 Complete series explaining the context and technical decisions step by step:
 
-1. **Choosing a stack for a technical blog with criteria**
-2. **Setting up an Astro SSG blog without magic**
-3. **Serving static HTML with S3 + CloudFront**
-4. **Own domain, HTTPS, and Google Search Console**
-5. **Automate deployment with GitHub Actions and AWS OIDC**
+1️⃣ Part 1: [A blog shouldn't be a SaaS](/articles/astro-ssg-aws-s3-cloudfront-part-1/)  
+2️⃣ Part 2: [Preparing an Astro blog with good judgment](/articles/astro-ssg-aws-s3-cloudfront-part-2/)  
+3️⃣ Part 3: [S3 + CloudFront to serve a fast and cheap static blog](/articles/astro-ssg-aws-s3-cloudfront-part-3/)  
+👉 Part 4: [Custom domain with Route 53 and CloudFront for an Astro SSG blog](/articles/astro-ssg-aws-s3-cloudfront-part-4/)  
+5️⃣ Part 5: [Automate deployment of an Astro SSG blog with GitHub Actions and AWS](/articles/astro-ssg-aws-s3-cloudfront-part-5/)  
 
 > The articles explain the *why* and *how* of each decision.
 
