@@ -2,6 +2,10 @@
     "name": "demo-astro-ssg-s3-cloudfront",
     "type": "module",
     "version": "0.0.1",
+    "engines": {
+        "node": "22.13.1",
+        "npm": "10.9.2"
+    },
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",

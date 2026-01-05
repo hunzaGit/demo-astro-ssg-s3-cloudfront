@@ -39,7 +39,7 @@ jobs:
 
             - name: Deploy to S3
               run: |
-                  aws s3 sync dist/ s3://${{ vars.PORTFOLIO_BUCKET_S3 }} \
+                  aws s3 sync dist/ s3://${{ vars.BLOG_BUCKET_S3 }} \
                    --delete \
                    --region ${{ vars.AWS_REGION }} \
                    --cache-control max-age=31536000
@@ -47,5 +47,5 @@ jobs:
             - name: Invalidate CloudFront cache
               run: |
                   aws cloudfront create-invalidation \
-                  --distribution-id ${{ secrets.PORTFOLIO_DISTRIBUTION_ID }} \
+                  --distribution-id ${{ secrets.BLOG_DISTRIBUTION_ID }} \
                   --paths '/*'
