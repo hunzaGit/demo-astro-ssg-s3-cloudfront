@@ -1,62 +1,144 @@
-# Astro Starter Kit: Blog
+# Astro SSG Blog — AWS S3 + CloudFront + GitHub Actions
 
-```sh
-npm create astro@latest -- --template blog
-```
+Demo repository accompanying a series of technical articles on how to set up, serve, and deploy a static blog with **Astro (SSG)** on **AWS**, using **S3 + CloudFront** and **automated CI with GitHub Actions and OIDC**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The goal is not to create a universal framework or template, but to show a **simple, realistic, and maintainable architecture**, designed for a technical portfolio or a well-made personal blog.
 
-Features:
+---
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## What does this repository do?
 
-## 🚀 Project Structure
+This repo contains a complete example of:
 
-Inside of your Astro project, you'll see the following folders and files:
+- Static blog generated with **Astro (Static Site Generation)** using the official Astro demo as a base
+- Build that produces flat HTML (`/dist`)
+- Site publishing on **Amazon S3**
+- Global distribution with **CloudFront**
+- Own domain + HTTPS (outside the code, explained in the articles)
+- **Automatic deployment** when pushing to main
+- Secure authentication with AWS using OIDC (no access keys)
+
+If the build fails, there is no deployment.  
+If deployment occurs, the CloudFront cache is automatically invalidated.
+
+---
+
+
+## Why does this repository exist?
+
+Because many technical portfolios talk about architecture, cloud, or CI/CD in abstract terms, but rarely do you see anything that is:
+
+- small
+- understandable
+- reproducible
+- and aligned with how real projects are worked on today
+
+This repository serves as a **demonstrable technical basis** for explaining decisions, trade-offs, and design criteria in a simple context, without unnecessary noise.
+
+---
+
+## Project structure
+
+Translated with DeepL.com (free version)
 
 ```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
+.
+├── src/                 # Código del blog Astro
+├── public/              # Assets estáticos
+├── dist/                # Output del build (SSG)
+├── infra/               # Ejemplos de configuración AWS (IAM, policies, etc.)
+│   ├── s3-bucket-policy.json
+│   ├── iam-access-policy-s3-cloudfront.json
+│   └── ...
+├── .github/
+│   └── workflows/
+│       └── deploy.yml   # GitHub Actions (build + deploy)
 ├── package.json
-└── tsconfig.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### `infra/` directory
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The `infra/` directory contains **example files** related to AWS:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+* Trust policies for OIDC
+* Minimum access policies for S3 and CloudFront
+* Guideline configuration for IAM Roles
 
-Any static assets, like images, can be placed in the `public/` directory.
+This is not complete infrastructure as code, but rather **practical references** designed to help you understand what permissions are needed and why.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Deployment flow
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```text
+git push origin main
+↓
+GitHub Actions
+↓
+Build Astro (SSG)
+↓
+Sync dist/ → S3
+↓
+Invalidate CloudFront
+↓
+Updated website
+```
 
-## 👀 Want to learn more?
+* No long credentials
+* No manual steps
+* No complex pipelines
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
 
-## Credit
+## Requirements
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+* Node.js (version aligned with `package.json`)
+* npm
+* AWS account (for S3 + CloudFront + Route 53)
+* Repository on GitHub
+
+
+---
+
+## Related articles
+
+Complete series explaining the context and technical decisions step by step:
+
+1. **Choosing a stack for a technical blog with criteria**
+2. **Setting up an Astro SSG blog without magic**
+3. **Serving static HTML with S3 + CloudFront**
+4. **Own domain, HTTPS, and Google Search Console**
+5. **Automate deployment with GitHub Actions and AWS OIDC**
+
+> The articles explain the *why* and *how* of each decision.
+
+---
+
+## Final notes
+
+This project prioritizes:
+
+* clarity over complexity
+* reasonable security over shortcuts
+* easy long-term maintenance
+
+It does not claim to be the most modern or comprehensive solution.
+It aims to be the one that is **least disruptive and best fulfills its function**.
+
+---
+
+## Code origin & attribution
+
+The initial codebase of this repository was generated using:
+
+```
+npm create astro@latest
+```
+
+The default project structure, configuration files, and example code produced by the Astro CLI have **not been modified** and are used strictly as a starting point for this demo.
+
+All architectural decisions, deployment configuration, CI setup, AWS integration, and infrastructure examples included in this repository are original work created for educational and portfolio purposes.
+
+Astro is an open-source project licensed under the MIT License.  
+More information: https://astro.build
