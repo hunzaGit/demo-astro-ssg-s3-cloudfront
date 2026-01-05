@@ -105,11 +105,11 @@ Updated website
 
 Complete series explaining the context and technical decisions step by step:
 
-1️⃣ Part 1: [A blog shouldn't be a SaaS](/articles/astro-ssg-aws-s3-cloudfront-part-1/)  
-2️⃣ Part 2: [Preparing an Astro blog with good judgment](/articles/astro-ssg-aws-s3-cloudfront-part-2/)  
-3️⃣ Part 3: [S3 + CloudFront to serve a fast and cheap static blog](/articles/astro-ssg-aws-s3-cloudfront-part-3/)  
-👉 Part 4: [Custom domain with Route 53 and CloudFront for an Astro SSG blog](/articles/astro-ssg-aws-s3-cloudfront-part-4/)  
-5️⃣ Part 5: [Automate deployment of an Astro SSG blog with GitHub Actions and AWS](/articles/astro-ssg-aws-s3-cloudfront-part-5/)  
+1️⃣ Part 1: [A blog shouldn't be a SaaS](https://rodrigodemiguel.es/articles/astro-ssg-aws-s3-cloudfront-part-1/)  
+2️⃣ Part 2: [Preparing an Astro blog with good judgment](https://rodrigodemiguel.es/articles/astro-ssg-aws-s3-cloudfront-part-2/)  
+3️⃣ Part 3: [S3 + CloudFront to serve a fast and cheap static blog](https://rodrigodemiguel.es/articles/astro-ssg-aws-s3-cloudfront-part-3/)  
+👉 Part 4: [Custom domain with Route 53 and CloudFront for an Astro SSG blog](https://rodrigodemiguel.es/articles/astro-ssg-aws-s3-cloudfront-part-4/)  
+5️⃣ Part 5: [Automate deployment of an Astro SSG blog with GitHub Actions and AWS](https://rodrigodemiguel.es/articles/astro-ssg-aws-s3-cloudfront-part-5/)  
 
 > The articles explain the *why* and *how* of each decision.
 
