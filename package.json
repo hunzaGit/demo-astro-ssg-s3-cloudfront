@@ -1,13 +1,12 @@
 {
-    "name": "",
+    "name": "demo-astro-ssg-s3-cloudfront",
     "type": "module",
     "version": "0.0.1",
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro",
-        "deploy": "aws s3 sync dist/ s3://$BLOG_BUCKET_S3 --delete --region eu-south-2 --cache-control max-age=31536000 && aws cloudfront create-invalidation --distribution-id $BLOG_DISTRIBUTION_ID --paths '/*'"
+        "astro": "astro"
     },
     "dependencies": {
         "@astrojs/mdx": "^4.3.13",

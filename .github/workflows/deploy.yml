@@ -4,7 +4,7 @@ on:
     push:
         branches:
             - main
-    workflow_dispatch: # Esto habilita el botón "Run workflow"
+    workflow_dispatch: # This enables the "Run workflow" button
 
 permissions:
     id-token: write
@@ -30,7 +30,7 @@ jobs:
             - name: Build Astro site
               run: npm run build
 
-            # 👇 SOLO se ejecuta si build ha ido bien
+            # 👇 This only runs if the build was successful
             - name: Configure AWS credentials via OIDC
               uses: aws-actions/configure-aws-credentials@v5.1.1
               with:
